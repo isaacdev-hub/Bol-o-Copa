@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: bolao-copa
+
+  datasource:
+    url: jdbc:postgresql://localhost:5444/bolao
+    username: bolao
+    password: bolao
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 8091
