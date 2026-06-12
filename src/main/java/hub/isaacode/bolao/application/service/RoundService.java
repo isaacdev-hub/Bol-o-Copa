@@ -15,6 +15,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class RoundService {
+
     private final RoundRepository roundRepository;
 
     @Transactional
@@ -25,8 +26,19 @@ public class RoundService {
     }
 
     @Transactional
+    public Round open(UUID roundId) {
+        Round round = findById(roundId);
+        if (round.getStatus() != RoundStatus.CREATED)
+            throw new BusinessException("Apenas rodadas recém-criadas podem ser abertas");
+        round.setStatus(RoundStatus.OPEN);
+        return round;
+    }
+
+    @Transactional
     public Round close(UUID roundId) {
         Round round = findById(roundId);
+        if (round.getStatus() == RoundStatus.CLOSED)
+            throw new BusinessException("Rodada já está fechada");
         round.setStatus(RoundStatus.CLOSED);
         return round;
     }

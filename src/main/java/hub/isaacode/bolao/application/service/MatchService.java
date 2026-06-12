@@ -38,9 +38,10 @@ public class MatchService {
         match.setScoreA(scoreA);
         match.setScoreB(scoreB);
 
-        betRepository.findAllByMatchId(matchId).forEach(bet ->
-                bet.setPoints(scoringService.calculatePoints(bet, scoreA, scoreB)));
-
+        betRepository.findAllByMatchId(matchId).forEach(bet -> {
+            bet.setPoints(scoringService.calculatePoints(bet, scoreA, scoreB));
+            betRepository.save(bet);
+        });
         return match;
     }
 
