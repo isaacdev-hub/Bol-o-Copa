@@ -8,8 +8,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface BetRepository extends JpaRepository<Bet, UUID> {
-    Optional<Bet> findByUserIdMatchId(UUID userId, UUID matchId);
-    boolean existsByUserIdMatchId(UUID userId, UUID matchId);
+    Optional<Bet> findByUserIdAndMatchId(UUID userId, UUID matchId);
+    boolean existsByUserIdAndMatchId(UUID userId, UUID matchId);
     List<Bet> findAllByUserId(UUID userId);
     List<Bet> findAllByMatchId(UUID matchId);
 }
