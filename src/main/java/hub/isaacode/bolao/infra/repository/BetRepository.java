@@ -1,4 +1,15 @@
 package hub.isaacode.bolao.infra.repository;
 
-public interface BetRepository {
+import hub.isaacode.bolao.domain.model.Bet;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+public interface BetRepository extends JpaRepository<Bet, UUID> {
+    Optional<Bet> findByUserIdMatchId(UUID userId, UUID matchId);
+    boolean existsByUserIdMatchId(UUID userId, UUID matchId);
+    List<Bet> finByAllUserIdAndMatchId(UUID userId, UUID matchId);
+    List<Bet> findAllByUserId(UUID userId);
 }
