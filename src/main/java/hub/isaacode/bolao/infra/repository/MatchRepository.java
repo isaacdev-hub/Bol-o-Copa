@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface MatchRepository extends JpaRepository<Match, UUID> {
-    List<Match> findByRoundId(UUID roundId);
+    List<Match> findAllByRoundId(UUID roundId);
 }
